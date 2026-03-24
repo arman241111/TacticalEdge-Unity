@@ -1,51 +1,51 @@
 # Tactical Edge
 
-A competitive FPS shooter game built with Unity 6 (URP).
+Соревновательный FPS шутер на Unity 6 (URP).
 
-## Features
-- FPS movement with CS2-style controls (WASD, Shift=walk, Ctrl=crouch, Space=jump)
-- Weapon system with ammo, reload, recoil
-- Enemy AI with patrol, detection, and combat
-- Team selection (Special Forces vs Terrorists)
-- Multiple weapon models (Glock, AK-47, M4A4, AWP, etc.)
-- Prototype map with collisions
-- HUD with crosshair, HP, ammo display
+## Особенности
+- Управление от первого лица в стиле CS2 (WASD, Shift=тихая ходьба, Ctrl=присед, Пробел=прыжок)
+- Система оружия с патронами, перезарядкой и отдачей
+- ИИ противников: патрулирование, обнаружение, стрельба
+- Выбор команды (Спецназ vs Террористы)
+- Модели оружий (Glock, AK-47, M4A4, AWP и др.)
+- Карта-прототип с коллизиями
+- Интерфейс: прицел, здоровье, патроны
 
-## Controls
-| Key | Action |
-|-----|--------|
-| WASD | Movement |
-| Mouse | Look around |
-| LMB | Shoot |
-| R | Reload |
-| Shift | Walk (silent) |
-| Ctrl | Crouch |
-| Space | Jump |
-| ESC | Toggle cursor |
+## Управление
+| Клавиша | Действие |
+|---------|----------|
+| WASD | Движение |
+| Мышь | Обзор |
+| ЛКМ | Стрелять |
+| R | Перезарядка |
+| Shift | Тихая ходьба |
+| Ctrl | Присед |
+| Пробел | Прыжок |
+| ESC | Курсор |
 
-## Tech Stack
+## Технологии
 - Unity 6 (Universal Render Pipeline)
-- C# with New Input System
-- AI Game Developer MCP plugin for AI-assisted development
+- C# с новой системой ввода (Input System)
+- AI Game Developer MCP плагин для разработки с помощью ИИ
 
-## Project Structure
+## Структура проекта
 ```
 Assets/
-├── Scripts/          # All C# game scripts
-├── Models/           # 3D models (FBX/OBJ)
-│   ├── Mercenary/    # CT character model
-│   └── Terrorist/    # T character model
-├── AngeloMaN87/      # Prototype Map (Asset Store)
-├── Scenes/           # Unity scenes
-├── Materials/        # Materials
-├── Prefabs/          # Prefabs
-└── Sounds/           # Audio files
+├── Scripts/          # Все C# скрипты
+├── Models/           # 3D модели (FBX/OBJ)
+│   ├── Mercenary/    # Модель спецназа (CT)
+│   └── Terrorist/    # Модель террориста (T)
+├── AngeloMaN87/      # Карта-прототип (Asset Store)
+├── Scenes/           # Сцены Unity
+├── Materials/        # Материалы
+├── Prefabs/          # Префабы
+└── Sounds/           # Звуки
 ```
 
-## Credits
-- Character models from Sketchfab (CC-BY/CC0 licenses)
-- Prototype Map by Angelo Ruiz Venturini (Unity Asset Store)
-- Built with assistance from Claude AI
+## Благодарности
+- Модели персонажей с Sketchfab (лицензии CC-BY/CC0)
+- Карта-прототип от Angelo Ruiz Venturini (Unity Asset Store)
+- Разработано с помощью Claude AI
 
-## License
-All rights reserved. © 2026
+## Лицензия
+Все права защищены. © 2026
