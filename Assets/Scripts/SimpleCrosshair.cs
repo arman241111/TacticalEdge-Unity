@@ -66,5 +66,14 @@ public class SimpleCrosshair : MonoBehaviour
             hpStyle.alignment = TextAnchor.LowerLeft;
             GUI.Label(new Rect(20, Screen.height - 50, 200, 40), "HP: " + hp.currentHealth, hpStyle);
         }
+
+        // Coordinates
+        GUIStyle coordStyle = new GUIStyle();
+        coordStyle.fontSize = 14;
+        coordStyle.normal.textColor = new Color(1, 1, 0, 0.8f);
+        coordStyle.alignment = TextAnchor.UpperRight;
+        Vector3 pos = transform.position;
+        GUI.Label(new Rect(Screen.width - 260, 10, 250, 20),
+            "X:" + pos.x.ToString("F1") + " Y:" + pos.y.ToString("F1") + " Z:" + pos.z.ToString("F1"), coordStyle);
     }
 }

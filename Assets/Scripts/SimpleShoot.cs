@@ -73,13 +73,18 @@ public class SimpleShoot : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, range))
         {
-            Debug.Log("Hit: " + hit.collider.name);
-
+            // Hit enemy AI
             EnemyAI enemy = hit.collider.GetComponentInParent<EnemyAI>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                Debug.Log("Enemy hit! HP: " + enemy.health);
+            }
+
+            // Hit network player
+            var np = GetComponent<NetworkPlayer>();
+            if (np != null)
+            {
+                np.ShootNetwork();
             }
         }
     }

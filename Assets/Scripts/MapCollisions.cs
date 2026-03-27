@@ -4,31 +4,37 @@ public class MapCollisions : MonoBehaviour
 {
     void Start()
     {
-        // Don't change map scale - use default
-
-        // Add mesh colliders to all mesh objects in the map
         AddColliders(transform);
-        Debug.Log("Map collisions added and scaled!");
+        Debug.Log("Map collisions added!");
     }
 
     void AddColliders(Transform parent)
     {
-        foreach (Transform child in parent)
+        // Add MeshCollider to every MeshFilter that doesn't have a collider
+        MeshFilter mf = parent.GetComponent<MeshFilter>();
+        if (mf != null && mf.sharedMesh != null)
         {
-            MeshFilter mf = child.GetComponent<MeshFilter>();
-            if (mf != null && mf.sharedMesh != null)
+            if (parent.GetComponent<Collider>() == null)
             {
-                // Check if collider already exists
-                if (child.GetComponent<Collider>() == null)
-                {
-                    MeshCollider mc = child.gameObject.AddComponent<MeshCollider>();
-                    mc.sharedMesh = mf.sharedMesh;
-                }
+                MeshCollider mc = parent.gameObject.AddComponent<MeshCollider>();
+                mc.sharedMesh = mf.sharedMesh;
             }
+        }
 
-            // Recurse into children
-            if (child.childCount > 0)
-                AddColliders(child);
+        // Also check MeshRenderer without MeshFilter (skinned meshes etc)
+        MeshRenderer mr = parent.GetComponent<MeshRenderer>();
+        if (mr != null && parent.GetComponent<Collider>() == null)
+        {
+            // Try to add box collider as fallback
+            BoxCollider bc = parent.gameObject.AddComponent<BoxCollider>();
+            bc.size = mr.bounds.size;
+            bc.center = parent.InverseTransformPoint(mr.bounds.center);
+        }
+
+        // Recurse into children
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            AddColliders(parent.GetChild(i));
         }
     }
 }
