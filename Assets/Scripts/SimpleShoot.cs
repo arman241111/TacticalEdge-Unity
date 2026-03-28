@@ -58,6 +58,7 @@ public class SimpleShoot : MonoBehaviour
         {
             isReloading = true;
             reloadTimer = 2f;
+            if (SoundManager.Instance != null) SoundManager.Instance.PlayReload();
         }
     }
 
@@ -66,10 +67,20 @@ public class SimpleShoot : MonoBehaviour
         nextFire = Time.time + fireRate;
         ammo--;
 
+        // Sound
+        if (SoundManager.Instance != null)
+        {
+            string weaponType = "rifle";
+            if (damage <= 20) weaponType = "pistol";
+            else if (damage <= 25 && maxAmmo >= 25) weaponType = "smg";
+            else if (damage >= 70) weaponType = "sniper";
+            else if (maxAmmo <= 8) weaponType = "shotgun";
+            else if (maxAmmo >= 100) weaponType = "heavy";
+            SoundManager.Instance.PlayShoot(weaponType);
+        }
+
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
-
-        Debug.Log("BANG! Ammo: " + ammo);
 
         if (Physics.Raycast(ray, out hit, range))
         {
@@ -77,15 +88,34 @@ public class SimpleShoot : MonoBehaviour
             EnemyAI enemy = hit.collider.GetComponentInParent<EnemyAI>();
             if (enemy != null)
             {
+                bool wasAlive = !enemy.isDead;
                 enemy.TakeDamage(damage);
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlayHitBody();
+                    if (enemy.isDead && wasAlive) SoundManager.Instance.PlayKillConfirm();
+                }
+                // Hitmarker
+                if (GamePolish.Instance != null)
+                {
+                    GamePolish.Instance.ShowHitmarker(false);
+                    if (enemy.isDead && wasAlive)
+                    {
+                        var rm = RoundManager.Instance;
+                        string wep = rm != null ? rm.currentWeaponName : "Gun";
+                        GamePolish.Instance.AddKillFeed("You", "Bot", wep, false);
+                    }
+                }
+            }
+            else
+            {
+                // Hit wall
+                if (SoundManager.Instance != null) SoundManager.Instance.PlayHitWall();
             }
 
             // Hit network player
             var np = GetComponent<NetworkPlayer>();
-            if (np != null)
-            {
-                np.ShootNetwork();
-            }
+            if (np != null) np.ShootNetwork();
         }
     }
 }

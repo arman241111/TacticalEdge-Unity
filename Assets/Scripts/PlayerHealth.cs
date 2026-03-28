@@ -51,6 +51,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= (int)amount;
         damageAlpha = 1f;
 
+        // Damage flash + sound
+        if (GamePolish.Instance != null) GamePolish.Instance.ShowDamageFlash();
+        if (SoundManager.Instance != null) SoundManager.Instance.PlayHitBody();
+
         if (currentHealth <= 0)
         {
             currentHealth = 0;
