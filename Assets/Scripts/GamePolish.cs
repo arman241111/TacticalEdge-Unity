@@ -188,7 +188,7 @@ public class GamePolish : MonoBehaviour
             hsStyle.normal.textColor = new Color(1, 0, 0, alpha);
             hsStyle.alignment = TextAnchor.MiddleCenter;
             hsStyle.fontStyle = FontStyle.Bold;
-            GUI.Label(new Rect(cx - 50, cy - 35, 100, 20), "HEADSHOT", hsStyle);
+            GUI.Label(new Rect(cx - 50, cy - 35, 100, 20), "В ГОЛОВУ", hsStyle);
         }
 
         GUI.color = Color.white;
@@ -258,7 +258,7 @@ public class GamePolish : MonoBehaviour
         titleStyle.normal.textColor = Color.white;
         titleStyle.alignment = TextAnchor.MiddleCenter;
         titleStyle.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(x, y + 10, w, 35), "SCOREBOARD", titleStyle);
+        GUI.Label(new Rect(x, y + 10, w, 35), "ТАБЛИЦА", titleStyle);
 
         // Headers
         GUIStyle headerStyle = new GUIStyle();
@@ -267,12 +267,12 @@ public class GamePolish : MonoBehaviour
         headerStyle.fontStyle = FontStyle.Bold;
 
         float row = y + 55;
-        GUI.Label(new Rect(x + 15, row, 150, 20), "PLAYER", headerStyle);
+        GUI.Label(new Rect(x + 15, row, 150, 20), "ИГРОК", headerStyle);
         headerStyle.alignment = TextAnchor.MiddleCenter;
         GUI.Label(new Rect(x + 200, row, 60, 20), "K", headerStyle);
         GUI.Label(new Rect(x + 260, row, 60, 20), "D", headerStyle);
-        GUI.Label(new Rect(x + 320, row, 60, 20), "SCORE", headerStyle);
-        GUI.Label(new Rect(x + 400, row, 60, 20), "PING", headerStyle);
+        GUI.Label(new Rect(x + 320, row, 60, 20), "ОЧКИ", headerStyle);
+        GUI.Label(new Rect(x + 400, row, 60, 20), "ПИНГ", headerStyle);
 
         // Separator
         GUI.color = new Color(0.3f, 0.3f, 0.3f);
@@ -307,8 +307,8 @@ public class GamePolish : MonoBehaviour
             enemyStyle.fontSize = 13;
             enemyStyle.normal.textColor = enemies[i].isDead ? Color.gray : new Color(1f, 0.5f, 0.2f);
 
-            string status = enemies[i].isDead ? " [DEAD]" : "";
-            GUI.Label(new Rect(x + 15, row, 180, 22), "Bot " + (i + 1) + status, enemyStyle);
+            string status = enemies[i].isDead ? " [МЁРТВ]" : "";
+            GUI.Label(new Rect(x + 15, row, 180, 22), "Бот " + (i + 1) + status, enemyStyle);
 
             enemyStyle.alignment = TextAnchor.MiddleCenter;
             enemyStyle.normal.textColor = Color.gray;

@@ -53,7 +53,7 @@ public class SimpleCrosshair : MonoBehaviour
             nameStyle.fontSize = 16;
             nameStyle.normal.textColor = Color.gray;
             nameStyle.alignment = TextAnchor.LowerRight;
-            GUI.Label(new Rect(Screen.width - 220, Screen.height - 75, 200, 25), "Glock-18", nameStyle);
+            GUI.Label(new Rect(Screen.width - 220, Screen.height - 75, 200, 25), "Глок-18", nameStyle);
         }
 
         // HP

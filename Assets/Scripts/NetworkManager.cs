@@ -34,7 +34,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         // Connect to Photon
         PhotonNetwork.ConnectUsingSettings();
-        statusText = "Connecting to server...";
+        statusText = "Подключение к серверу...";
     }
 
     void DisablePlayerControls()
@@ -66,13 +66,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         isConnected = true;
-        statusText = "Connected! Create or join a room.";
+        statusText = "Подключено! Создайте или войдите в комнату.";
         PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedLobby()
     {
-        statusText = "In lobby. Create or join a room.";
+        statusText = "В лобби. Создайте или войдите в комнату.";
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -185,27 +185,27 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         inputRoomName = GUI.TextField(new Rect(x + 140, y + 115, w - 180, 28), inputRoomName, 20);
 
         // Create button
-        if (GUI.Button(new Rect(x + 20, y + 155, (w - 60) / 2, 40), "CREATE ROOM"))
+        if (GUI.Button(new Rect(x + 20, y + 155, (w - 60) / 2, 40), "СОЗДАТЬ"))
         {
             if (inputRoomName.Length > 0)
                 CreateRoom(inputRoomName);
         }
 
         // Join button
-        if (GUI.Button(new Rect(x + 30 + (w - 60) / 2, y + 155, (w - 60) / 2, 40), "JOIN ROOM"))
+        if (GUI.Button(new Rect(x + 30 + (w - 60) / 2, y + 155, (w - 60) / 2, 40), "ВОЙТИ"))
         {
             if (inputRoomName.Length > 0)
                 JoinRoom(inputRoomName);
         }
 
         // Quick match
-        if (GUI.Button(new Rect(x + 20, y + 205, w - 40, 35), "QUICK MATCH"))
+        if (GUI.Button(new Rect(x + 20, y + 205, w - 40, 35), "БЫСТРАЯ ИГРА"))
         {
             PhotonNetwork.JoinRandomRoom();
         }
 
         // Solo play
-        if (GUI.Button(new Rect(x + 20, y + 250, w - 40, 35), "SOLO (OFFLINE)"))
+        if (GUI.Button(new Rect(x + 20, y + 250, w - 40, 35), "ОДИНОЧНАЯ"))
         {
             showLobbyUI = false;
             PhotonNetwork.OfflineMode = true;
@@ -218,7 +218,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         infoStyle.normal.textColor = Color.gray;
         infoStyle.alignment = TextAnchor.MiddleCenter;
         GUI.Label(new Rect(x, y + h - 30, w, 25),
-            "Players online: " + PhotonNetwork.CountOfPlayers, infoStyle);
+            "Игроков онлайн: " + PhotonNetwork.CountOfPlayers, infoStyle);
     }
 
     void DrawTeamSelect()
@@ -237,7 +237,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         titleStyle.normal.textColor = Color.white;
         titleStyle.alignment = TextAnchor.MiddleCenter;
         titleStyle.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(x, y + 15, w, 45), "SELECT TEAM", titleStyle);
+        GUI.Label(new Rect(x, y + 15, w, 45), "ВЫБЕРИТЕ КОМАНДУ", titleStyle);
 
         GUIStyle infoStyle = new GUIStyle();
         infoStyle.fontSize = 14;
@@ -255,7 +255,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ctStyle.normal.textColor = new Color(0.3f, 0.6f, 1f);
         ctStyle.alignment = TextAnchor.MiddleCenter;
         ctStyle.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(x + 20, y + 95, w / 2 - 30, 50), "SPECIAL FORCES", ctStyle);
+        GUI.Label(new Rect(x + 20, y + 95, w / 2 - 30, 50), "СПЕЦНАЗ", ctStyle);
         ctStyle.fontSize = 14;
         ctStyle.normal.textColor = Color.gray;
         GUI.Label(new Rect(x + 20, y + 145, w / 2 - 30, 40), "(CT)", ctStyle);
@@ -270,7 +270,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         tStyle.normal.textColor = new Color(1f, 0.5f, 0.2f);
         tStyle.alignment = TextAnchor.MiddleCenter;
         tStyle.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(x + w / 2 + 10, y + 95, w / 2 - 30, 50), "TERRORISTS", tStyle);
+        GUI.Label(new Rect(x + w / 2 + 10, y + 95, w / 2 - 30, 50), "ТЕРРОРИСТЫ", tStyle);
         tStyle.fontSize = 14;
         tStyle.normal.textColor = Color.gray;
         GUI.Label(new Rect(x + w / 2 + 10, y + 145, w / 2 - 30, 40), "(T)", tStyle);

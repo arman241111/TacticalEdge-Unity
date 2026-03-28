@@ -7,8 +7,8 @@ public class MainMenu : MonoBehaviour
     public static bool showMenu = true;
 
     // Tabs
-    private string currentTab = "PLAY";
-    private string[] tabs = { "PLAY", "PROFILE", "INVENTORY", "SHOP", "SETTINGS" };
+    private string currentTab = "ИГРАТЬ";
+    private string[] tabs = { "ИГРАТЬ", "ПРОФИЛЬ", "ИНВЕНТАРЬ", "МАГАЗИН", "НАСТРОЙКИ" };
 
     // Player data
     private string playerName = "Player";
@@ -90,11 +90,11 @@ public class MainMenu : MonoBehaviour
 
         switch (currentTab)
         {
-            case "PLAY": DrawPlayTab(W, contentY, contentH); break;
-            case "PROFILE": DrawProfileTab(W, contentY, contentH); break;
-            case "INVENTORY": DrawInventoryTab(W, contentY, contentH); break;
-            case "SHOP": DrawShopTab(W, contentY, contentH); break;
-            case "SETTINGS": DrawSettingsTab(W, contentY, contentH); break;
+            case "ИГРАТЬ": DrawPlayTab(W, contentY, contentH); break;
+            case "ПРОФИЛЬ": DrawProfileTab(W, contentY, contentH); break;
+            case "ИНВЕНТАРЬ": DrawInventoryTab(W, contentY, contentH); break;
+            case "МАГАЗИН": DrawShopTab(W, contentY, contentH); break;
+            case "НАСТРОЙКИ": DrawSettingsTab(W, contentY, contentH); break;
         }
     }
 
@@ -129,7 +129,7 @@ public class MainMenu : MonoBehaviour
         keyStyle.fontSize = 14;
         keyStyle.normal.textColor = new Color(0.5f, 0.8f, 1f);
         keyStyle.alignment = TextAnchor.MiddleRight;
-        GUI.Label(new Rect(W - 90, 5, 80, 20), playerKeys + " Keys", keyStyle);
+        GUI.Label(new Rect(W - 90, 5, 80, 20), playerKeys + " Кл.", keyStyle);
     }
 
     void DrawTabBar(float W)
@@ -179,15 +179,15 @@ public class MainMenu : MonoBehaviour
         titleStyle.normal.textColor = Color.white;
         titleStyle.alignment = TextAnchor.MiddleCenter;
         titleStyle.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(0, Y + 40, W, 50), "CHOOSE GAME MODE", titleStyle);
+        GUI.Label(new Rect(0, Y + 40, W, 50), "ВЫБЕРИТЕ РЕЖИМ", titleStyle);
 
         // Game mode buttons
-        string[] modes = { "COMPETITIVE", "DEATHMATCH", "ARMS RACE", "CASUAL" };
+        string[] modes = { "СОРЕВНОВАТЕЛЬНЫЙ", "ПЕРЕСТРЕЛКА", "ГОНКА ВООРУЖЕНИЙ", "ОБЫЧНЫЙ" };
         string[] descs = {
-            "5v5 | Rounds | Economy | Bomb",
-            "Free for all | Respawn | No rounds",
-            "Kill = New weapon | First to finish wins",
-            "Relaxed | More money | Respawn"
+            "5v5 | Раунды | Экономика | Бомба",
+            "Все против всех | Респавн | Без раундов",
+            "Убийство = Новое оружие | Первый до конца",
+            "Расслабленный | Больше денег | Респавн"
         };
         Color[] colors = {
             new Color(0.9f, 0.75f, 0.3f),
@@ -243,7 +243,7 @@ public class MainMenu : MonoBehaviour
         soloStyle.fontSize = 16;
         soloStyle.normal.textColor = Color.gray;
         soloStyle.alignment = TextAnchor.MiddleCenter;
-        GUI.Label(new Rect(cx - 100, startY + 200, 200, 40), "PLAY WITH BOTS", soloStyle);
+        GUI.Label(new Rect(cx - 100, startY + 200, 200, 40), "ИГРАТЬ С БОТАМИ", soloStyle);
     }
 
     void DrawProfileTab(float W, float Y, float H)
@@ -284,7 +284,7 @@ public class MainMenu : MonoBehaviour
 
         // Stats
         float statY = Y + 190;
-        string[] statNames = { "Total Kills", "Total Deaths", "K/D Ratio", "Wins", "Games Played" };
+        string[] statNames = { "Убийств", "Смертей", "У/С", "Побед", "Игр сыграно" };
         string[] statValues = {
             totalKills.ToString(),
             totalDeaths.ToString(),
@@ -319,7 +319,7 @@ public class MainMenu : MonoBehaviour
         titleStyle.fontSize = 20;
         titleStyle.normal.textColor = Color.white;
         titleStyle.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(30, Y + 10, 200, 30), "MY SKINS (" + ownedSkins.Count + ")", titleStyle);
+        GUI.Label(new Rect(30, Y + 10, 300, 30), "МОИ СКИНЫ (" + ownedSkins.Count + ")", titleStyle);
 
         scrollPos = GUI.BeginScrollView(new Rect(20, Y + 50, W - 40, H - 60), scrollPos,
             new Rect(0, 0, W - 60, ownedSkins.Count * 55 + 20));
@@ -345,7 +345,7 @@ public class MainMenu : MonoBehaviour
 
             if (!equipped)
             {
-                if (GUI.Button(new Rect(W - 180, iy + 8, 100, 32), "EQUIP"))
+                if (GUI.Button(new Rect(W - 180, iy + 8, 100, 32), "НАДЕТЬ"))
                 {
                     equippedSkin = ownedSkins[i];
                 }
@@ -356,7 +356,7 @@ public class MainMenu : MonoBehaviour
                 eqStyle.fontSize = 13;
                 eqStyle.normal.textColor = new Color(0.3f, 0.8f, 0.3f);
                 eqStyle.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(W - 200, iy + 12, 120, 25), "EQUIPPED", eqStyle);
+                GUI.Label(new Rect(W - 200, iy + 12, 120, 25), "НАДЕТО", eqStyle);
             }
         }
 
@@ -369,7 +369,7 @@ public class MainMenu : MonoBehaviour
         GUIStyle coinStyle = new GUIStyle();
         coinStyle.fontSize = 18;
         coinStyle.normal.textColor = new Color(1f, 0.85f, 0.2f);
-        GUI.Label(new Rect(30, Y + 10, 200, 30), "Coins: " + playerCoins, coinStyle);
+        GUI.Label(new Rect(30, Y + 10, 200, 30), "Монеты: " + playerCoins, coinStyle);
 
         scrollPos = GUI.BeginScrollView(new Rect(20, Y + 50, W - 40, H - 60), scrollPos,
             new Rect(0, 0, W - 60, shopItems.Count * 60 + 20));
@@ -402,9 +402,9 @@ public class MainMenu : MonoBehaviour
                 ownStyle.fontSize = 13;
                 ownStyle.normal.textColor = new Color(0.3f, 0.8f, 0.3f);
                 ownStyle.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(W - 180, iy + 14, 100, 25), "OWNED", ownStyle);
+                GUI.Label(new Rect(W - 180, iy + 14, 100, 25), "КУПЛЕНО", ownStyle);
             }
-            else if (GUI.Button(new Rect(W - 180, iy + 10, 100, 32), canBuy ? "BUY" : "---"))
+            else if (GUI.Button(new Rect(W - 180, iy + 10, 100, 32), canBuy ? "КУПИТЬ" : "---"))
             {
                 if (canBuy) BuyItem(item.Key, item.Value);
             }
@@ -432,35 +432,35 @@ public class MainMenu : MonoBehaviour
         valStyle.alignment = TextAnchor.MiddleRight;
 
         // Sensitivity
-        GUI.Label(new Rect(sx, sy, 200, 25), "Mouse Sensitivity", labelStyle);
+        GUI.Label(new Rect(sx, sy, 200, 25), "Чувствительность", labelStyle);
         GUI.Label(new Rect(sx + settW - 50, sy, 50, 25), sensitivity.ToString("F1"), valStyle);
         sensitivity = GUI.HorizontalSlider(new Rect(sx, sy + 30, settW, 20), sensitivity, 0.5f, 10f);
         sy += 65;
 
         // Volume
-        GUI.Label(new Rect(sx, sy, 200, 25), "Volume", labelStyle);
+        GUI.Label(new Rect(sx, sy, 200, 25), "Громкость", labelStyle);
         GUI.Label(new Rect(sx + settW - 50, sy, 50, 25), (volume * 100).ToString("F0") + "%", valStyle);
         volume = GUI.HorizontalSlider(new Rect(sx, sy + 30, settW, 20), volume, 0f, 1f);
         sy += 65;
 
         // FOV
-        GUI.Label(new Rect(sx, sy, 200, 25), "Field of View", labelStyle);
+        GUI.Label(new Rect(sx, sy, 200, 25), "Поле зрения", labelStyle);
         GUI.Label(new Rect(sx + settW - 50, sy, 50, 25), fov.ToString(), valStyle);
         fov = (int)GUI.HorizontalSlider(new Rect(sx, sy + 30, settW, 20), fov, 60, 120);
         sy += 65;
 
         // Show FPS
-        GUI.Label(new Rect(sx, sy, 200, 25), "Show FPS", labelStyle);
+        GUI.Label(new Rect(sx, sy, 200, 25), "Показать FPS", labelStyle);
         showFPS = GUI.Toggle(new Rect(sx + settW - 30, sy, 30, 25), showFPS, "");
         sy += 45;
 
         // Player name
-        GUI.Label(new Rect(sx, sy, 200, 25), "Player Name", labelStyle);
+        GUI.Label(new Rect(sx, sy, 200, 25), "Имя игрока", labelStyle);
         playerName = GUI.TextField(new Rect(sx + 150, sy, settW - 150, 25), playerName, 20);
         sy += 45;
 
         // Apply button
-        if (GUI.Button(new Rect(cx - 80, sy + 20, 160, 40), "APPLY"))
+        if (GUI.Button(new Rect(cx - 80, sy + 20, 160, 40), "ПРИМЕНИТЬ"))
         {
             ApplySettings();
             SaveData();

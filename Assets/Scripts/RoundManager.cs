@@ -466,7 +466,7 @@ public class RoundManager : MonoBehaviour
         infoStyle.alignment = TextAnchor.MiddleCenter;
         string teamLabel = playerTeam == "ct" ? "CT" : "T";
         GUI.Label(new Rect(Screen.width / 2 - 100, 45, 200, 20),
-            "Round " + currentRound + "/" + maxRounds + " | " + teamLabel, infoStyle);
+            "Раунд " + currentRound + "/" + maxRounds + " | " + teamLabel, infoStyle);
     }
 
     void DrawPhaseInfo()
@@ -485,14 +485,14 @@ public class RoundManager : MonoBehaviour
                 timerStyle.fontSize = 24;
                 timerStyle.normal.textColor = Color.cyan;
                 GUI.Label(new Rect(Screen.width / 2 - 100, 70, 200, 35),
-                    "FREEZE " + sec + "s", timerStyle);
+                    "ЗАМОРОЗКА " + sec + " сек", timerStyle);
                 break;
 
             case "buy":
                 timerStyle.fontSize = 22;
                 timerStyle.normal.textColor = Color.yellow;
                 GUI.Label(new Rect(Screen.width / 2 - 100, 70, 200, 35),
-                    "BUY TIME " + sec + "s | B - Shop", timerStyle);
+                    "ЗАКУПКА " + sec + " сек | B - Магазин", timerStyle);
                 break;
 
             case "play":
@@ -507,7 +507,7 @@ public class RoundManager : MonoBehaviour
                 bool playerWon = (playerTeam == "ct" && ctScore > tScore) ||
                                  (playerTeam == "t" && tScore > ctScore);
                 timerStyle.normal.textColor = playerWon ? Color.green : Color.red;
-                string msg = playerWon ? "ROUND WON" : "ROUND LOST";
+                string msg = playerWon ? "РАУНД ВЫИГРАН" : "РАУНД ПРОИГРАН";
                 GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 30, 200, 60),
                     msg, timerStyle);
                 break;
@@ -539,7 +539,7 @@ public class RoundManager : MonoBehaviour
         titleStyle.normal.textColor = Color.yellow;
         titleStyle.alignment = TextAnchor.MiddleCenter;
         titleStyle.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(x, y + 5, w, 35), "BUY MENU", titleStyle);
+        GUI.Label(new Rect(x, y + 5, w, 35), "МАГАЗИН", titleStyle);
 
         // Money
         GUIStyle moneyStyle = new GUIStyle();
@@ -659,7 +659,7 @@ public class RoundManager : MonoBehaviour
         bool won = (playerTeam == "ct" && ctScore > tScore) ||
                    (playerTeam == "t" && tScore > ctScore);
         endStyle.normal.textColor = won ? Color.green : Color.red;
-        string text = won ? "VICTORY!" : "DEFEAT!";
+        string text = won ? "ПОБЕДА!" : "ПОРАЖЕНИЕ!";
         GUI.Label(new Rect(0, Screen.height / 2 - 60, Screen.width, 60), text, endStyle);
 
         endStyle.fontSize = 28;
@@ -670,6 +670,6 @@ public class RoundManager : MonoBehaviour
         endStyle.fontSize = 16;
         endStyle.normal.textColor = Color.gray;
         GUI.Label(new Rect(0, Screen.height / 2 + 50, Screen.width, 30),
-            "Kills: " + kills, endStyle);
+            "Убийств: " + kills, endStyle);
     }
 }
